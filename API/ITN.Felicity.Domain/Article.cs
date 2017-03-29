@@ -9,6 +9,8 @@ namespace ITN.Felicity.Domain
 {
     public class Article
     {
+        protected Article() { }
+
         public Article(Guid id, string url)
         {
             if (url == null)
@@ -18,6 +20,7 @@ namespace ITN.Felicity.Domain
 
             this.Id = id;
             this.Url = url;
+            this.LastUpdated = DateTime.Now;
         }
 
         public Guid Id { get; private set; }
