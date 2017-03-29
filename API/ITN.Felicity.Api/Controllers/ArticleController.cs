@@ -22,6 +22,11 @@ namespace ITN.Felicity.Api.Controllers
             this._repo = repo;
             this._unitOfWork = unitOfWork;
         }
+
+        public async Task<Article> Get([FromUri]Guid id)
+        {
+            return await this._repo.FindByIdAsync(id);
+        }
       
 
         // POST api/values
