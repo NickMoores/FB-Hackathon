@@ -26,12 +26,13 @@ namespace ITN.Felicity.EntityFramework
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Article>()
+                .ToTable("Article")
                 .HasKey(a => a.Id);
 
             modelBuilder.Entity<Article>()
                 .HasMany(Article.Mapping.Feedback)
                 .WithRequired()
-                .Map(m => m.MapKey("ArticleID"));
+                .HasForeignKey(a => a.ArticleId);
 
             modelBuilder.Entity<Article>()
                 .Property(a => a.Url)
@@ -39,6 +40,7 @@ namespace ITN.Felicity.EntityFramework
                 .IsUnicode(false);
 
             modelBuilder.Entity<Feedback>()
+                .ToTable("Feedback")
                 .HasKey(a => a.Id);
 
             modelBuilder.Entity<Feedback>()
