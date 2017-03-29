@@ -24,6 +24,9 @@ namespace ITN.Felicity.EntityFramework.Repositories
             this.dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<Feedback>> FindFeedbackByArticleId(Guid articleId)
+            => await this.dbContext.Feedback.Where(f => f.ArticleId == articleId).ToListAsync();
+
         public Task<Feedback> FindFeedbackByIdAsync(Guid articleId, Guid feedbackId)
             => this.dbContext.Feedback.SingleOrDefaultAsync(f => f.ArticleId == articleId && f.Id == feedbackId);
 

@@ -26,6 +26,21 @@ namespace ITN.Felicity.Api.Controllers
             this._unitOfWork = unitOfWork;
         }
 
+        [HttpGet, Route("feedback")]
+        public async Task<IHttpActionResult> Get(Guid articleId)
+        {
+            Article article = await this._repo.FindByIdAsync(articleId);
+
+            if (article == null)
+            {
+                return NotFound();
+            }
+
+            IEnumerable<Feedback> feedback = await this.feedbackRepository.FindFeedbackByArticleId(articleId);
+
+            return Ok(feedback.Select(fb => new FeedbackModel { InstallationId = fb.InstallationId, Comment = fb.Comment, HighlightedText = fb.HighlightedText }));
+        }
+
         [HttpGet, Route("feedback/{feedbackId:Guid}", Name = "GetFeedback")]
         public async Task<IHttpActionResult> Get(Guid articleId, Guid feedbackId)
         {
