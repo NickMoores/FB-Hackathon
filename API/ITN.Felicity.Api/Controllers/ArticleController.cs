@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ITN.Felicity.Domain.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,8 +8,14 @@ using System.Web.Http;
 
 namespace ITN.Felicity.Api.Controllers
 {
-    public class ValuesController : ApiController
+    public class ArticleController : ApiController
     {
+        private readonly IArticleRepository _repo;
+
+        public ArticleController(IArticleRepository repo)
+        {
+            this._repo = repo;
+        }
         // GET api/values
         public IEnumerable<string> Get()
         {
