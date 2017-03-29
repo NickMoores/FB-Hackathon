@@ -10,9 +10,10 @@ namespace ITN.Felicity.Domain
     {
         protected Feedback() { }
 
-        public Feedback(Guid id, Article article, Guid installationId, string highlightedText, string comment)
+        private Feedback(Guid id, Guid articleId, Guid installationId, string highlightedText, string comment)
         {
             this.Id = id;
+            this.ArticleId = articleId;
             this.InstallationId = installationId;
             this.HighlightedText = highlightedText;
             this.Comment = comment;
@@ -36,6 +37,21 @@ namespace ITN.Felicity.Domain
             }
 
             this.Comment = comment;
+        }
+
+        internal static Feedback CreateForArticle(Guid articleId, Guid installationId, string highlightedText, string comment)
+        {
+            if (highlightedText == null)
+            {
+                throw new ArgumentNullException(nameof(highlightedText));
+            }
+
+            if (comment == null)
+            {
+                throw new ArgumentNullException(nameof(comment));
+            }
+
+            return new Feedback(Guid.NewGuid(), articleId, installationId, highlightedText, comment);
         }
     }
 }
