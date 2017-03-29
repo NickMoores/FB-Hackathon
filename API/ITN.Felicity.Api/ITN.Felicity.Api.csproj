@@ -258,6 +258,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITN.Felicity.Domain\ITN.Felicity.Domain.csproj">
+      <Project>{C54CB271-011D-4AAC-8B37-81B672048E7D}</Project>
+      <Name>ITN.Felicity.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ITN.Felicity.EntityFramework\ITN.Felicity.EntityFramework.csproj">
+      <Project>{43289D47-9F8C-4FDB-99A1-578646C35DEC}</Project>
+      <Name>ITN.Felicity.EntityFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

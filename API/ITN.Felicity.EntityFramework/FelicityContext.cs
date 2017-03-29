@@ -32,6 +32,24 @@ namespace ITN.Felicity.EntityFramework
                 .HasMany(Article.Mapping.Feedback)
                 .WithRequired()
                 .Map(m => m.MapKey("ArticleID"));
+
+            modelBuilder.Entity<Article>()
+                .Property(a => a.Url)
+                .IsMaxLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Feedback>()
+                .HasKey(a => a.Id);
+
+            modelBuilder.Entity<Feedback>()
+                .Property(f => f.HighlightedText)
+                .IsMaxLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Feedback>()
+                .Property(f => f.Comment)
+                .IsMaxLength()
+                .IsUnicode(false);
         }
     }
 }
