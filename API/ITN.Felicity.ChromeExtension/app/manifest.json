@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "felicity",
+  "description": "Feedback Engagement Layer to Inform Composer of Internal Typing, Yeah. Provides the tools to feedback on news articles to the author.",
+  "version": "1.0",
+
+  "permissions": [
+    "contextMenus","tabs", "http://*/*", "https://*/*"
+  ],
+  "icons": { "16": "img/icon16.png",
+           "48": "img/icon48.png",
+          "128": "img/icon128.png" },
+  /*"browser_action": {
+    "default_title": "Submit feedback on highlighted text.",
+    "default_icon": "img/icon.png",
+    "default_popup": "popup.html"
+  },*/
+  "background": {
+    "scripts": [ "core.js", "setup.js" ] //,
+  }
+}
