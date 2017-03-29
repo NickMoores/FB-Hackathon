@@ -13,7 +13,7 @@ using System.Web.Http.Cors;
 
 namespace ITN.Felicity.Api.Controllers
 {
-    [EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ArticleController : ApiController
     {
         private readonly IArticleRepository _repo;
