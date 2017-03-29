@@ -9,9 +9,9 @@ namespace ITN.Felicity.EntityFramework
 {
     public sealed class UnitOfWork : IUnitOfWork
     {
-        private readonly FelicityContext dbContext;
+        private readonly DbContext dbContext;
 
-        public UnitOfWork(FelicityContext dbContext)
+        public UnitOfWork(DbContext dbContext)
         {
             if (dbContext == null)
             {
