@@ -1,9 +1,13 @@
-﻿using ITN.Felicity.Domain.Repositories;
+﻿using ITN.Felicity.Api.Models;
+using ITN.Felicity.Domain;
+using ITN.Felicity.Domain.Repositories;
+using ITN.Felicity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ITN.Felicity.Api.Controllers
@@ -11,26 +15,26 @@ namespace ITN.Felicity.Api.Controllers
     public class ArticleController : ApiController
     {
         private readonly IArticleRepository _repo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ArticleController(IArticleRepository repo)
+        public ArticleController(IArticleRepository repo, IUnitOfWork unitOfWork)
         {
             this._repo = repo;
+            this._unitOfWork = unitOfWork;
         }
-        // GET api/values
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+      
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public async Task Post(ArticleModel am)
         {
+            Article article = await _repo.FindByUrlAsync(am.Url);
+            if(article == null)
+            {
+                article = new Article(Guid.NewGuid(), am.Url);
+                _repo.Add(article);
+                await this._unitOfWork.SaveChangesAsync();
+            }
+            
         }
 
         // PUT api/values/5
