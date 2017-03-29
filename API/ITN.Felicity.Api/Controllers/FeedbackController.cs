@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace ITN.Felicity.Api.Controllers
 {
+    [RoutePrefix("article/{articleId:guid}")]
     public class FeedbackController : ApiController
     {
         private readonly IArticleRepository _repo;
@@ -23,18 +24,20 @@ namespace ITN.Felicity.Api.Controllers
         }
 
         // POST: api/Feedback
-        public async Task Post([FromBody] FeedbackModel fm)
+        [Route("feedback")]
+        public async Task<IHttpActionResult> Post([FromUri]Guid articleId, [FromBody]FeedbackModel fm)
         {
-            var article = await _repo.FindByUrlAsync(fm.ArticleURL);
+            var article = await _repo.FindByIdAsync(articleId);
+
             if (article == null)
             {
-                article = new Domain.Article(Guid.NewGuid(), fm.ArticleURL);
-                this._repo.Add(article);
+                return NotFound();
             }
 
-            article.AddFeedback(fm.Feedback.InstallationId, fm.Feedback.HighlightedText, fm.Feedback.Comment);
+            article.AddFeedback(fm.InstallationId, fm.HighlightedText, fm.Comment);
             await this._unitOfWork.SaveChangesAsync();
-        }
 
+            return Ok();
+        }
     }
 }

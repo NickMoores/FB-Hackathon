@@ -8,7 +8,10 @@ namespace ITN.Felicity.Api.Models
 {
     public class FeedbackModel
     {
-        public string ArticleURL { get; set; }
-        public Feedback Feedback { get; set; }
+        public Guid InstallationId { get; set; }
+
+        public string HighlightedText { get; set; }
+
+        public string Comment { get; set; }
     }
 }
