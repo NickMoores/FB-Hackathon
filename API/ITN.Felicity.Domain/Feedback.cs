@@ -8,12 +8,14 @@ namespace ITN.Felicity.Domain
 {
     public class Feedback
     {
-        public Feedback(Guid installationId, string highlightedText, string comment)
+        public Feedback(Guid id, Guid installationId, string highlightedText, string comment)
         {
             this.InstallationId = installationId;
             this.HighlightedText = highlightedText;
             this.Comment = comment;
         }
+
+        public Guid Id { get; private set; }
 
         public Guid InstallationId { get; private set; }
 

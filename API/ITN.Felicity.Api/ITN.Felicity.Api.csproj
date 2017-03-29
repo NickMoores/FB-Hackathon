@@ -277,11 +277,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ITN.Felicity.Domain\ITN.Felicity.Domain.csproj">
-      <Project>{c54cb271-011d-4aac-8b37-81b672048e7d}</Project>
+      <Project>{C54CB271-011D-4AAC-8B37-81B672048E7D}</Project>
       <Name>ITN.Felicity.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\ITN.Felicity.EntityFramework\ITN.Felicity.EntityFramework.csproj">
-      <Project>{43289d47-9f8c-4fdb-99a1-578646c35dec}</Project>
+      <Project>{43289D47-9F8C-4FDB-99A1-578646C35DEC}</Project>
       <Name>ITN.Felicity.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
