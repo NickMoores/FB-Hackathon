@@ -23,16 +23,13 @@ namespace ITN.Felicity.EntityFramework
 
         public virtual DbSet<Article> Articles { get; set; }
 
+        public virtual DbSet<Feedback> Feedback { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Article>()
                 .ToTable("Article")
                 .HasKey(a => a.Id);
-
-            modelBuilder.Entity<Article>()
-                .HasMany(Article.Mapping.Feedback)
-                .WithRequired()
-                .HasForeignKey(a => a.ArticleId);
 
             modelBuilder.Entity<Article>()
                 .Property(a => a.Url)

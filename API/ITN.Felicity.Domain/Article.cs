@@ -29,8 +29,6 @@ namespace ITN.Felicity.Domain
 
         public DateTime LastUpdated { get; private set; }
 
-        public ICollection<Feedback> Feedback { get; private set; } = new HashSet<Feedback>(FeedbackComparer.Instance);
-
         public void UpdateLastUpdated(DateTime lastUpdated)
         {
             if (lastUpdated > this.LastUpdated)
@@ -39,24 +37,7 @@ namespace ITN.Felicity.Domain
             }
         }
 
-        public void AddFeedback(Guid installationId, string highlightedText, string comment)
-        {
-            if (highlightedText == null)
-            {
-                throw new ArgumentNullException(nameof(highlightedText));
-            }
-
-            if (comment == null)
-            {
-                throw new ArgumentNullException(nameof(comment));
-            }
-
-            this.Feedback.Add(new Domain.Feedback(Guid.NewGuid(), this, installationId, highlightedText, comment));
-        }
-
-        public static class Mapping
-        {
-            public static Expression<Func<Article, ICollection<Feedback>>> Feedback { get; } = a => a.Feedback;
-        }
+        public Feedback CreateFeedback(Guid installationId, string highlightedText, string comment)
+            => Feedback.CreateForArticle(this.Id, installationId, highlightedText, comment);
     }
 }

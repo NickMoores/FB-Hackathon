@@ -25,12 +25,11 @@ namespace ITN.Felicity.Api.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-
         public async Task<List<Article>> Get()
         {
             return await _repo.Get();
         }
-
+        
         public async Task<Article> Get([FromUri]Guid id)
         {
             return await this._repo.FindByIdAsync(id);
@@ -48,11 +47,6 @@ namespace ITN.Felicity.Api.Controllers
                 await this._unitOfWork.SaveChangesAsync();
             }
             
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
         }
 
         // DELETE api/values/5
