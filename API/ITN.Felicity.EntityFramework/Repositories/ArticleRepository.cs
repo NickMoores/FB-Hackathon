@@ -28,5 +28,8 @@ namespace ITN.Felicity.EntityFramework.Repositories
         public Task<Article> FindByUrlAsync(string url) => this.dbContext.Articles.Include(Article.Mapping.Feedback).SingleOrDefaultAsync(a => a.Url == url);
 
         public void Add(Article article) => this.dbContext.Articles.Add(article);
+
+        public Task<List<Article>> Get() => dbContext.Articles.ToListAsync();
+        
     }
 }

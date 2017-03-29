@@ -13,5 +13,7 @@ namespace ITN.Felicity.Domain.Repositories
         Task<Article> FindByUrlAsync(string url);
 
         void Add(Article article);
+
+        Task<List<Article>> Get();
     }
 }

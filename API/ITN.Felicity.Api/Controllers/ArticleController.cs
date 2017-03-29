@@ -9,9 +9,11 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ITN.Felicity.Api.Controllers
 {
+    [EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
     public class ArticleController : ApiController
     {
         private readonly IArticleRepository _repo;
@@ -21,6 +23,12 @@ namespace ITN.Felicity.Api.Controllers
         {
             this._repo = repo;
             this._unitOfWork = unitOfWork;
+        }
+
+
+        public async Task<List<Article>> Get()
+        {
+            return await _repo.Get();
         }
 
         public async Task<Article> Get([FromUri]Guid id)
