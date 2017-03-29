@@ -219,7 +219,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
-    <Compile Include="Controllers\TestDeleteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
