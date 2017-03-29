@@ -15,6 +15,7 @@ namespace ITN.Felicity.Api.Controllers
     {
         private readonly IArticleRepository _repo;
         private readonly IUnitOfWork _unitOfWork;
+
         public FeedbackController(IArticleRepository repo, IUnitOfWork unitOfWork)
         {
             this._repo = repo;
@@ -30,8 +31,8 @@ namespace ITN.Felicity.Api.Controllers
                 article = new Domain.Article(Guid.NewGuid(), fm.ArticleURL);
                 this._repo.Add(article);
             }
-            
-            article.AddFeedback(fm.Feedback);
+
+            article.AddFeedback(fm.Feedback.InstallationId, fm.Feedback.HighlightedText, fm.Feedback.Comment);
             await this._unitOfWork.SaveChangesAsync();
         }
 

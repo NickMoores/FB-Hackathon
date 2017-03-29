@@ -36,14 +36,19 @@ namespace ITN.Felicity.Domain
             }
         }
 
-        public void AddFeedback(Feedback feedback)
+        public void AddFeedback(Guid installationId, string highlightedText, string comment)
         {
-            if (feedback == null)
+            if (highlightedText == null)
             {
-                throw new ArgumentNullException(nameof(feedback));
+                throw new ArgumentNullException(nameof(highlightedText));
             }
 
-            this.Feedback.Add(feedback);
+            if (comment == null)
+            {
+                throw new ArgumentNullException(nameof(comment));
+            }
+
+            this.Feedback.Add(new Domain.Feedback(Guid.NewGuid(), this, installationId, highlightedText, comment));
         }
 
         public static class Mapping
