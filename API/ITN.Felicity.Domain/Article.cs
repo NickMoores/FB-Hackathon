@@ -26,7 +26,7 @@ namespace ITN.Felicity.Domain
 
         public DateTime LastUpdated { get; private set; }
 
-        public ICollection<Feedback> Feedback { get; private set; } = new List<Feedback>();
+        public ICollection<Feedback> Feedback { get; private set; } = new HashSet<Feedback>(FeedbackComparer.Instance);
 
         public void UpdateLastUpdated(DateTime lastUpdated)
         {
