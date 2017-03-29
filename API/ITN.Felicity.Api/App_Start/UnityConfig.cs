@@ -22,7 +22,9 @@ namespace ITN.Felicity.Api
             container.RegisterType<FelicityContext>(new ContainerControlledLifetimeManager());
             container.RegisterType<DbContext, FelicityContext>();
             container.RegisterType<IArticleRepository, ArticleRepository>();
+            container.RegisterType<IFeedbackRepository, FeedbackRepository>();
             container.RegisterType<IUnitOfWork, UnitOfWork>(new ContainerControlledLifetimeManager());
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityHierarchicalDependencyResolver(container);
         }
     }
