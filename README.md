@@ -1,6 +1,5 @@
 # FB-Hackathon
-## Felicity
-### (or Feedback engagement layer to inform composer of internal typing, yeah?)
+## Felicity (or Feedback engagement layer to inform composer of internal typing, yeah?)
 
 Felcity is a project aiming to provide journalists with inline, crowd-sourced feedback for articles they publish on the web.
 
